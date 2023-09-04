@@ -1,5 +1,3 @@
-# alx-higher_level_programming
-I'm now a ALX Student, this is my first repository as a full-stack engineer
 <h1> alx higher level programming </h1>
 
 <h2> my highe level programming repositiry </h2>
