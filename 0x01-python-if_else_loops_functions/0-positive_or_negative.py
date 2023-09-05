@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 import random
-numba = random.randint(-10, 10)
-if numba > 0:
-    print("{} is positive".format(numba))
-elif numba == 0:
-    print("{} is zero".format(numba))
+number = random.randint(-10, 10)
+if number > 0:
+    print("{} is positive".format(number))
+elif number == 0:
+    print("{} is zero".format(number))
 else:
-    print("{} is negative".format(numba))
+    print("{} is negative".format(number))
