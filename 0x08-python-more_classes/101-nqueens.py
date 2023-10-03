@@ -1,20 +1,21 @@
 #!/usr/bin/python3
-"""Addresses the N-queens puzzle, which involves,
-determining all valid solutions,
-for placing N non-attacking queens on an NxN chessboard.
+"""Solves the N-queens puzzle.
+
+Determines all possible solutions to placing N
+N non-attacking queens on an NxN chessboard.
 
 Example:
     $ ./101-nqueens.py N
 
-The value of N must be an integer greater than or equal to 4.
+N must be an integer greater than or equal to 4.
 
 Attributes:
     board (list): A list of lists representing the chessboard.
-    solutions (list): A list of lists containing the solutions.
+    solutions (list): A list of lists containing solutions.
 
-Solutions are presented in the format [[r, c], [r, c], [r, c], [r, c]],
-where 'r' and 'c' denote the row and column, respectively, for the placement,
-of a queen on the chessboard.
+Solutions are represented in the format [[r, c], [r, c], [r, c], [r, c]]
+where `r` and `c` represent the row and column, respectively, where a
+queen must be placed on the chessboard.
 """
 import sys
 
@@ -99,14 +100,13 @@ def xout(board, row, col):
 
 
 def recursive_solve(board, row, queens, solutions):
-    """Solve an N-queens puzzle using a recursive approach.
+    """Recursively solve an N-queens puzzle.
 
     Args:
-        board (list): The current chessboard configuration.
-        row (int): The current active row.
-        queens (int): The current count of queens placed..
-        solutions (list): A collection of solutions represented,
-        as a list of lists.
+        board (list): The current working chessboard.
+        row (int): The current working row.
+        queens (int): The current number of placed queens.
+        solutions (list): A list of lists of solutions.
     Returns:
         solutions
     """
@@ -138,5 +138,5 @@ if __name__ == "__main__":
 
     board = init_board(int(sys.argv[1]))
     solutions = recursive_solve(board, 0, 0, [])
-    for output in solutions:
-        print(output)
+    for sol in solutions:
+        print(sol)
