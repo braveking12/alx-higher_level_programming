@@ -1,4 +1,3 @@
-i11-student.py
 #!/usr/bin/python3
 """Defines a class Student."""
 
