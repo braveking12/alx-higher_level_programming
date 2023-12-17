@@ -1,33 +1,22 @@
 #!/usr/bin/python3
+"""Retrieves and displays information about States
+and their Cities from the database hbtn_0e_101_usa.
 """
-This script prints all City objects
-from the database `hbtn_0e_14_usa`.
-"""
-
-from sys import argv
-from relationship_state import Base, State
-from relationship_city import City
+import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from relationship_state import State
+from relationship_city import City
+
 
 if __name__ == "__main__":
-    """
-    Connect to the database and add a new state
-    with an associated city, then commit the changes.
-    """
+    engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}"
+                           .format(sys.argv[1], sys.argv[2], sys.argv[3]),
+                           pool_pre_ping=True)
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-    cust_db_connect_str = 'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-        argv[1], argv[2], argv[3])
-    engine = create_engine(cust_db_connect_str)
-    Base.metadata.create_all(engine)
-    CustomSession = sessionmaker(bind=engine)
-
-    custom_session = CustomSession()
-
-    custom_state = State(name='California')
-    custom_city = City(name='San Francisco')
-    custom_state.cities.append(custom_city)
-
-    custom_session.add(custom_state)
-    custom_session.commit()
-    custom_session.close()
+    for state in session.query(State).order_by(State.id):
+        print("{}: {}".format(state.id, state.name))
+        for city in state.cities:
+            print("    {}: {}".format(city.id, city.name))
